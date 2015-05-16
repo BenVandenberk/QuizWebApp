@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+
+body {	
+	background-color: #D8F2F0;
+}
+
+.right {
+	text-align: right;
+}
+
+.floatRight {
+	float : right;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align : center;
+}
+
+.spanTable {
+	width: 100%;
+}
+
+.error {	
+	font-weight: bold;
+}
+
+.head {
+	clear: both;
+	overflow: auto;
+	position: relative;
+}
+
+.logo {
+	float: left;
+	clear: both;
+}
+
+.dialog {
+	display: none;
+}
+
+.main {
+	text-align: center;
+	clear: both;
+}
+
+ul.vragen {
+	list-style-image: url('images/vraagtekenResized.png');
+	font-size: 25px;
+}
+
+li.vraag {
+	cursor : pointer;	
+}
+
+li.vraag:hover {
+	border-style : solid;
+	border-width : 1px;	
+}
+
+.vraagDiv {
+	border-style : dashed;
+	border-width : 5px;	
+	padding : 20px;
+	background-color : #A5F2EC;
+	margin-top : 40px; 
+	overflow: hidden;
+}
+
+.mc {
+	margin-bottom : 20px;
+}
+
+.top10 {
+	margin-top : 10px;
+}
+
+#num_slider {
+	width : 500px;
+	display : inline-block;
+}
+
+.teSlepen {
+	float : left;
+	width: 50%;
+}
+
+.antwoordVelden {
+	float : rigth;
+	width : 50%;
+}
+
+.gedropt {
+	width: 100px !important;
+	height: auto !important;	
+}
+
+.out {
+	width: 250px !important;
+	height: auto !important;	
+}
+
+.verbetering {
+	width: 35px;
+	height: auto;
+}
+
+div.rapport {
+	border-style : dashed;
+	border-width : 5px;	
+	padding : 20px;
+	background-color : #DAC5E0;
+	margin-top : 40px; 
+	overflow: hidden;
+}
+
+td.rapport {
+	padding: 0 15px 0 15px;
+}
+
+table.rapportUit {
+	border-spacing : 10px;
+}
+
+div.rapportUit {
+	background-color : #ECF7E6;
+}
