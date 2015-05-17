@@ -23,16 +23,18 @@ public class Gebruiker {
 	private String gebruikersNaam;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Deelnemer deelnemer;
+	boolean isBeheerder;
 
 	public Gebruiker() {
 
 	}
 
-	public Gebruiker(String gebruikersNaam, String paswoord) {
+	public Gebruiker(String gebruikersNaam, String paswoord, boolean isBeheerder) {
 		this.gebruikersNaam = gebruikersNaam;
 		this.salt = Authentication.nextSalt();
 		this.pwHash = Authentication.hashPw(paswoord, salt);
 		deelnemer = new Deelnemer(gebruikersNaam);
+		this.isBeheerder = isBeheerder;
 	}
 
 	public String getGebruikersNaam() {
@@ -53,6 +55,10 @@ public class Gebruiker {
 
 	public Deelnemer getDeelnemer() {
 		return deelnemer;
+	}
+
+	public boolean isBeheerder() {
+		return isBeheerder;
 	}
 
 }

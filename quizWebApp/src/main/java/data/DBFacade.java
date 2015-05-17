@@ -29,14 +29,14 @@ public class DBFacade {
 		return gebruiker != null;
 	}
 
-	public Deelnemer login(String gebruikersNaam, String paswoord) throws IllegalArgumentException {
+	public Gebruiker login(String gebruikersNaam, String paswoord) throws IllegalArgumentException {
 		Gebruiker gebruiker = hibernateToDB.getGebruiker(gebruikersNaam);
 		if (gebruiker == null) {
 			throw new IllegalArgumentException("Gebruiker bestaat niet");
 		}
 
 		if (Authentication.isJuistPaswoord(paswoord, gebruiker.getPwHash(), gebruiker.getSalt())) {
-			return gebruiker.getDeelnemer();
+			return gebruiker;
 		} else {
 			throw new IllegalArgumentException("Onjuist paswoord");
 		}
@@ -63,13 +63,13 @@ public class DBFacade {
 		return hibernateToDB.getVragenReeksen();
 	}
 
+	public List<Deelnemer> getDeelnemers() {
+		return hibernateToDB.getDeelnemers();
+	}
+
 	public VragenReeks getVragenReeks(int id) {
 		return hibernateToDB.getVragenReeks(id);
 	}
-
-	// public void loadObject(Object object) {
-	// hibernateToDB.initializeProxy(object);
-	// }
 
 	public Deelname getDeelname(int id) {
 		return hibernateToDB.getDeelname(id);

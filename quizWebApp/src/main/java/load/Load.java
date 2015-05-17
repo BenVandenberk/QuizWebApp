@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.Gebruiker;
 import model.Thema;
 import model.VragenReeks;
 import model.vraag.DragAndDropVraag;
@@ -126,12 +127,15 @@ public class Load {
 			chemieVR.addVraag(v);
 		}
 
+		Gebruiker beheerder = new Gebruiker("admin", "admin", true);
+
 		DBFacade dbFacade = DBFacade.getUniekeInstantie();
 		dbFacade.saveVragenReeks(cijfersVR);
 		dbFacade.saveVragenReeks(dierenVR);
 		dbFacade.saveVragenReeks(rekenenGevordVR);
 		dbFacade.saveVragenReeks(fysicaVR);
 		dbFacade.saveVragenReeks(chemieVR);
+		dbFacade.saveGebruiker(beheerder);
 	}
 
 	private static List<String> keuzes(String... keuzes) {

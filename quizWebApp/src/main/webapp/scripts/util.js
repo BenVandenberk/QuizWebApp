@@ -1,4 +1,4 @@
-function loadGebruikerFuncties(plaatsId, redirectTo, loadIngelogdeFunctionaliteiten) {
+function loadGebruikerFuncties(plaatsId, redirectTo, loadIngelogdeFunctionaliteiten, vanuitHome) {
 	$.ajax({
 		method : "GET",
 		url : "gebruikerInfo",
@@ -16,7 +16,12 @@ function loadGebruikerFuncties(plaatsId, redirectTo, loadIngelogdeFunctionalitei
 				});				
 			});
 			$(".btn").button();
-			loadIngelogdeFunctionaliteiten();
+			loadIngelogdeFunctionaliteiten(data.isBeheerder);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			if (!vanuitHome) {
+				window.location = "/quizWebApp";
+			}
 		}
 	});
 	$("#btn_login").click(function(e) {

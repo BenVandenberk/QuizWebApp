@@ -243,7 +243,6 @@ function toonBeperktRapport(data) {
 	$(".main").empty();
 	$(".main").append($("<h1>").text("Rapport"));
 	$(".main").append($("<h2>").text("-- " + data.naam + " --"));
-	$(".main").append($("<br>"));
 	$(".main").append($("<h3>").text("Je behaalde een score van: " + data.score + "/" + data.aantalVragen));
 	$(".main").append($("<div>").addClass("rapport").attr("id", "div_rapport"));
 	$("#div_rapport").append($("<table style='width:100%'>").attr("id", "tab_rapport").addClass("left"));
@@ -258,7 +257,7 @@ function toonBeperktRapport(data) {
 		imgSrc = data.verbetering[i] ? "images/JuistGB.png" : "images/FoutGB.png";
 		$("#tab_rapport").append($("<tr>").append(
 				$("<td style='width:70%'>").html(data.vragen[i].vraag).addClass("rapport")).append(
-						$("<td>").addClass("center").html(data.vragen[i].antwoord).addClass("rapport")).append(
+						$("<td>").addClass("center").html(data.vragen[i].juisteAntwoord).addClass("rapport")).append(
 								$("<td>").addClass("center").html($("<img>").addClass("rapport").attr("src", imgSrc).addClass("verbetering"))));
 	}
 	

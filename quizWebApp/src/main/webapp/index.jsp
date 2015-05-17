@@ -75,19 +75,19 @@
 <div class="main">
 
 	<div id="tabs">
-		<ul>
+		<ul id="ul_tabs">
 			<li><a href="#tab1">Welkom</a></li>
 			<li><a href="#tab2">Info</a></li>
 		</ul>
 	
-		<div id="tab1">
+		<div id="tab1" class="tabPanel">
 			<h1>Welkom</h1>
 			<p>Browse door vragenreeksen, neem deel aan quizzen en bekijk je resultaten</p>
 			<br />
 			<a href="deelnemen.html" class="btn">Deelnemen</a>
 		</div>
 		
-		<div id="tab2" class="left">
+		<div id="tab2" class="left tabPanel">
 			<h1 class="center">Info</h1>
 			<p>Als anonieme gebruiker kan je vragenreeksen oplossen. Na elke reeks krijg je een overzicht met je score en de juiste antwoorden. Om van de volledige functionaliteit van QWA gebruik te maken registreer je je eerst.</p>
 			<p>Als geregistreerde gebruiker wordt elk antwoord dat je geeft opgeslagen. Later kan je van iedere vorige deelname een overzicht opvragen. Bepaalde vragenreeksen kan je pas oplossen als je een voorgaande vragenreeks hebt opgelost. Log je dus in om je progress te bewaren! </p>

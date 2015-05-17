@@ -69,8 +69,16 @@ public class Deelnemer {
 		teMakenReeksen.add(vragenReeks);
 	}
 
-	public void removeToDo(VragenReeks vragenReeks) {
-		teMakenReeksen.remove(vragenReeks);
+	public void removeToDo(int vragenReeksID) {
+		for (int i = teMakenReeksen.size() - 1; i >= 0; i--) {
+			if (teMakenReeksen.get(i).getVragenReeksId() == vragenReeksID) {
+				teMakenReeksen.remove(i);
+			}
+		}
+	}
+
+	public List<VragenReeks> getTeMakenReeksen() {
+		return teMakenReeksen;
 	}
 
 }

@@ -7,8 +7,8 @@
 <script src="./scripts/jquery.js" type="text/javascript"></script>
 <script src="./scripts/jquery-ui.js" type="text/javascript"></script>
 <script src="./scripts/util.js" type="text/javascript"></script>
-<script src="./scripts/rapporten.js" type="text/javascript"></script>
-<title>Rapporten</title>
+<script src="./scripts/todo.js" type="text/javascript"></script>
+<title>Opstellen To-do</title>
 </head>
 <body>
 
@@ -27,18 +27,37 @@
 			</tr>
 		</table>
 		
+		<div id="div_accDenied" class="dialog">
+			<p>Toegang geweigerd: geen beheerder</p>
+		</div>
+		
+		<div id="div_selDeeln" class="dialog">
+			<p>Selecteer een deelnemer om vragenreeksen aan zijn lijstje toe te voegen</p>
+		</div>
+		
 	</div>
 	
 	<div class="main">
 	
-		<h1>Rapporten</h1>
-	
-		<div id="accordion_rapporten">	
-		</div>
+		<h1>To Do</h1>
+		<p>Stel to-do lijstjes op voor individuele deelnemers</p>
 		
-		<div class="top10 right">
-			<a href="/quizWebApp" class="btn">Home</a>
-			<a href="/quizWebApp/deelnemen.html" class="btn">Deelnemen</a>
+		<div id="todo_wrapper">
+		
+			<div id="div_deelnemers" class="todo">
+				<h2>Deelnemers</h2>
+				<ul id="ul_deelnemers" class="select">
+				</ul>
+			</div>	
+			
+			<div id="div_todo" class="todo">
+				<h2>To Do</h2>
+			</div>
+			
+			<div id="div_vragenreeksen" class="todo">
+				<h2>Vragenreeksen</h2>
+			</div>
+		
 		</div>
 	
 	</div>

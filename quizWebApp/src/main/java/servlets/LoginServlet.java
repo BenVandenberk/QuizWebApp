@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Deelnemer;
+import model.Gebruiker;
 import service.GebruikerService;
 
 @WebServlet("/login")
@@ -24,9 +25,11 @@ public class LoginServlet extends HttpServlet {
 		String gebruikersNaam = request.getParameter("gebruikersNaam");
 		String paswoord = request.getParameter("paswoord");
 		try {
-			Deelnemer deelnemer = GebruikerService.login(gebruikersNaam, paswoord);
+			Gebruiker gebruiker = GebruikerService.login(gebruikersNaam, paswoord);
+			Deelnemer deelnemer = gebruiker.getDeelnemer();
 			HttpSession session = request.getSession();
 			session.setAttribute("deelnemer", deelnemer);
+			session.setAttribute("isBeheerder", gebruiker.isBeheerder());
 		} catch (IllegalArgumentException iae) {
 			response.setStatus(521);
 			PrintWriter out = response.getWriter();

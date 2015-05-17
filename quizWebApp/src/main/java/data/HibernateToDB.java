@@ -99,6 +99,19 @@ class HibernateToDB {
 		return vragenReeksen;
 	}
 
+	@SuppressWarnings("unchecked")
+	protected List<Deelnemer> getDeelnemers() {
+		session = sessionFactory.openSession();
+		String hql = "FROM Deelnemer";
+		Query query = session.createQuery(hql);
+		List<Deelnemer> deelnemers = query.list();
+		for (Deelnemer deelnemer : deelnemers) {
+			Hibernate.initialize(deelnemer.getTeMakenReeksen());
+		}
+		session.close();
+		return deelnemers;
+	}
+
 	protected VragenReeks getVragenReeks(int id) {
 		session = sessionFactory.openSession();
 		VragenReeks result = (VragenReeks) session.get(VragenReeks.class, id);

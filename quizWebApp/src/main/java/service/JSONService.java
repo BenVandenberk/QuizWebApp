@@ -3,7 +3,9 @@ package service;
 import java.util.List;
 
 import model.Deelname;
+import model.Deelnemer;
 import model.GegevenAntwoord;
+import model.VragenReeks;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,6 +46,59 @@ public class JSONService {
 		deelnameJSON.put("score", deelname.getScore());
 
 		return deelnameJSON;
+	}
+
+	public static JSONObject maakToDoStart(List<Deelnemer> deelnemers, List<VragenReeks> vragenReeksen) {
+		JSONObject todoStartJSON = new JSONObject();
+		JSONArray deelnemersJSON = new JSONArray();
+		JSONObject deelnemerJSON;
+		JSONArray todoVragenReeksen;
+		for (Deelnemer deelnemer : deelnemers) {
+			deelnemerJSON = new JSONObject();
+			deelnemerJSON.put("naam", deelnemer.getGebruikersNaam());
+			deelnemerJSON.put("id", deelnemer.getDeelnemerID());
+			todoVragenReeksen = new JSONArray();
+			for (VragenReeks todo : deelnemer.getTeMakenReeksen()) {
+				todoVragenReeksen.put(maakVragenReeksJSON(todo));
+			}
+			deelnemerJSON.put("todo", todoVragenReeksen);
+			deelnemersJSON.put(deelnemerJSON);
+		}
+		todoStartJSON.put("deelnemers", deelnemersJSON);
+
+		JSONArray vragenReeksenJSON = new JSONArray();
+		for (VragenReeks vragenReeks : vragenReeksen) {
+			vragenReeksenJSON.put(maakVragenReeksJSON(vragenReeks));
+		}
+		todoStartJSON.put("vragenReeksen", vragenReeksenJSON);
+
+		return todoStartJSON;
+	}
+
+	public static JSONObject maakToDoDeelnemer(Deelnemer deelnemer, List<VragenReeks> vragenReeksen) {
+		JSONObject resultJSON = new JSONObject();
+
+		JSONArray toDoDeelnemerJSON = new JSONArray();
+		for (VragenReeks v : deelnemer.getTeMakenReeksen()) {
+			toDoDeelnemerJSON.put(maakVragenReeksJSON(v));
+		}
+		resultJSON.put("todo", toDoDeelnemerJSON);
+
+		JSONArray mogelijkeVragenReeksenJSON = new JSONArray();
+		for (VragenReeks vr : vragenReeksen) {
+			mogelijkeVragenReeksenJSON.put(maakVragenReeksJSON(vr));
+		}
+		resultJSON.put("vragenReeksen", mogelijkeVragenReeksenJSON);
+
+		return resultJSON;
+	}
+
+	private static JSONObject maakVragenReeksJSON(VragenReeks vragenReeks) {
+		JSONObject vragenReeksJSON = new JSONObject();
+		vragenReeksJSON.put("naam", vragenReeks.getNaam());
+		vragenReeksJSON.put("id", vragenReeks.getVragenReeksId());
+		vragenReeksJSON.put("thema", vragenReeks.getThema().getOmschrijving());
+		return vragenReeksJSON;
 	}
 
 }

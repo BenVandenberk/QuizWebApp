@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import model.Deelnemer;
 
+import org.json.JSONObject;
+
 @WebServlet("/gebruikerInfo")
 public class GebruikerInfoServlet extends HttpServlet {
 
@@ -22,11 +24,19 @@ public class GebruikerInfoServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Deelnemer deelnemer = (Deelnemer) session.getAttribute("deelnemer");
+		boolean isBeheerder = false;
+		Object isBeh = session.getAttribute("isBeheerder");
+		if (isBeh != null) {
+			isBeheerder = (Boolean) isBeh;
+		}
 
 		if (deelnemer != null) {
+			JSONObject responseJSON = new JSONObject();
+			responseJSON.put("gebruikersNaam", deelnemer.getGebruikersNaam());
+			responseJSON.put("isBeheerder", isBeheerder);
 			response.setContentType("text/javascript");
 			PrintWriter out = response.getWriter();
-			out.println("{\"gebruikersNaam\" : \"" + deelnemer.getGebruikersNaam() + "\"}");
+			out.println(responseJSON);
 			out.close();
 		} else {
 			response.sendError(501, "Niet ingelogd");

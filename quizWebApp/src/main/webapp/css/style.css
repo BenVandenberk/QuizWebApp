@@ -21,7 +21,7 @@ body {
 }
 
 .spanTable {
-	width: 100%;
+	width: 100%;	
 }
 
 .error {	
@@ -66,7 +66,7 @@ li.vraag:hover {
 	border-style : dashed;
 	border-width : 5px;	
 	padding : 20px;
-	background-color : #A5F2EC;
+	background-color : #ECF7E6;
 	margin-top : 40px; 
 	overflow: hidden;
 }
@@ -77,6 +77,10 @@ li.vraag:hover {
 
 .top10 {
 	margin-top : 10px;
+}
+
+.right5 {
+	margin-right : 5px !important;
 }
 
 #num_slider {
@@ -113,7 +117,7 @@ div.rapport {
 	border-style : dashed;
 	border-width : 5px;	
 	padding : 20px;
-	background-color : #DAC5E0;
+	background-color : #ECF7E6;
 	margin-top : 40px; 
 	overflow: hidden;
 }
@@ -128,4 +132,66 @@ table.rapportUit {
 
 div.rapportUit {
 	background-color : #ECF7E6;
+}
+
+div.tabPanel {
+	background-color : #ECF7E6 !important;
+}
+
+div.vragen {
+	background-color : #ECF7E6;
+}
+
+#div_deelnemers {
+	display : table-cell;
+	width : 400px;
+}
+
+#div_todo {
+	display : table-cell;
+	width : auto;	
+}
+
+#div_vragenreeksen {
+	display : table-cell;
+	width : 400px;
+}
+
+#todo_wrapper {
+	width: 100%;
+	display: table;
+	border-spacing : 10px;
+}
+
+div.todo {
+	border-style : dashed;
+	border-width : 2px;
+	height : 600px;	
+}
+
+ul.select {
+	list-style-type : none;
+	text-align : left;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+}
+
+li.selectable {
+	margin : 5px 10px 0px 10px;
+	padding : 5px;
+}
+
+.plus, .min{
+	width: 20px;
+	height: auto;
+}
+
+table.todoTabel {
+	width: 90%;
+	margin: 0 auto;
+}
+
+div.todo {
+	background-color : #ECF7E6;
+	overflow-y : scroll;
 }

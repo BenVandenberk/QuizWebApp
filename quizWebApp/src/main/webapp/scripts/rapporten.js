@@ -2,7 +2,7 @@ var geladenDeelnames = new Array();
 var deelnameID;
 
 $(function() {
-	loadGebruikerFuncties("td_gebruiker", "/quizWebApp", loadIngelogdeFunctionaliteitenRapp);
+	loadGebruikerFuncties("td_gebruiker", "/quizWebApp", loadIngelogdeFunctionaliteitenRapp, false);
 	
 	$.ajax({
 		method : "GET",
@@ -11,6 +11,8 @@ $(function() {
 		dataType : "json",
 		success : toonDeelnames
 	});
+	
+	$(".btn").button();
 	
 	deelnameID = location.search.split('id=')[1] ? location.search.split('id=')[1] : -1;	
 });
@@ -36,13 +38,19 @@ function toonDeelnames(data, textStatus, jqXHR) {
 		collapsible : true,
 		heightStyle : "content",
 		active : false,
-		beforeActivate : panelClick
+		beforeActivate : panelClick		
 	});	
 	$("div .rapportUit").removeClass("ui-widget-content");
 	
-	if (deelnameID >= 0) {		
-		$("h2[data-deelname-id~='" + deelnameID + "']").click();
-		window.scrollTo(0,document.body.scrollHeight);
+	if (deelnameID >= 0) {	
+		$("h2[data-deelname-id~='" + deelnameID + "']").bind("click", function() {			  
+	          setTimeout(function() {
+	        	  var div = $("div[data-deelname-id~='" + deelnameID + "']");
+	        	  var offsetTop = div.offset().top + div.height();	        	  
+	        	  window.scroll(0, offsetTop);
+	          }, 500);			
+		});
+		$("h2[data-deelname-id~='" + deelnameID + "']").click();		
 	}
 }
 
@@ -58,7 +66,7 @@ function panelClick(event, ui) {
 				dataType: "json",
 				data : data,
 				success : function(data, textStatus, jqXHR) {					
-					toonDeelnameDetail(data, textStatus, jqXHR, ui.newPanel);
+					toonDeelnameDetail(data, textStatus, jqXHR, ui.newPanel);					
 				}
 			});
 		}

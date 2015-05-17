@@ -1,5 +1,5 @@
 $(function() {
-	loadGebruikerFuncties("td_gebruiker", "/quizWebApp/deelnemen.html", loadIngelogdeFunctionaliteitenDeeln);
+	loadGebruikerFuncties("td_gebruiker", "/quizWebApp/deelnemen.html", loadIngelogdeFunctionaliteitenDeeln, true);
 	$(".btn").button();		
 	
 	$.ajax({
@@ -16,7 +16,7 @@ function toonVragenReeksen(data, textStatus, jqXHR) {
 	
 	for(var i = 0; i < themas.length; i++) {
 		$("#accordion_thema").append($("<h2>" + themas[i].omschrijving + "</h2>"));
-		$("#accordion_thema").append($("<div>").append($("<ul>").addClass(themas[i].omschrijving).addClass("vragen")));
+		$("#accordion_thema").append($("<div>").addClass("vragen").append($("<ul>").addClass(themas[i].omschrijving).addClass("vragen")));		
 		
 		for (var j = 0; j < vragenReeksen.length; j++) {
 			if (themas[i].omschrijving === vragenReeksen[j].thema.omschrijving) {
@@ -29,6 +29,8 @@ function toonVragenReeksen(data, textStatus, jqXHR) {
 		collapsible : true,
 		active : false
 	});	
+	
+	$("div .vragen").removeClass("ui-widget-content");
 	
 	$("li.vraag").click(function(e) {
 		$.ajax({
@@ -45,7 +47,7 @@ function toonVragenReeksen(data, textStatus, jqXHR) {
 	});		
 }
 
-function loadIngelogdeFunctionaliteitenDeeln() {
+function loadIngelogdeFunctionaliteitenDeeln(isBeheerder) {
 	
 }
 

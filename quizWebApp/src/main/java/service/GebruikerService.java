@@ -1,6 +1,5 @@
 package service;
 
-import model.Deelnemer;
 import model.Gebruiker;
 import data.DBFacade;
 
@@ -12,11 +11,11 @@ public class GebruikerService {
 			throw new IllegalStateException("Gebruiker bestaat al");
 		}
 
-		Gebruiker gebruiker = new Gebruiker(gebruikersNaam, paswoord);
+		Gebruiker gebruiker = new Gebruiker(gebruikersNaam, paswoord, false);
 		dbFacade.saveGebruiker(gebruiker);
 	}
 
-	public static Deelnemer login(String gebruikersNaam, String paswoord) throws IllegalArgumentException {
+	public static Gebruiker login(String gebruikersNaam, String paswoord) throws IllegalArgumentException {
 		DBFacade dbFacade = DBFacade.getUniekeInstantie();
 		return dbFacade.login(gebruikersNaam, paswoord);
 	}
