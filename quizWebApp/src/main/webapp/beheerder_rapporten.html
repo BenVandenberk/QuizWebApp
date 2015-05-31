@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./css/style.css" type="text/css" />
+<link rel="stylesheet" href="./css/jquery-ui.css" type="text/css" />
+<script src="./scripts/jquery.js" type="text/javascript"></script>
+<script src="./scripts/jquery-ui.js" type="text/javascript"></script>
+<script src="./scripts/json2.js" type="text/javascript"></script>
+<script src="./scripts/util.js" type="text/javascript"></script>
+<script src="./scripts/beheerderRapporten.js" type="text/javascript"></script>
+<title>Beheerder Rapporten</title>
+</head>
+<body>
+
+<div class="head">
+	
+		<table class="spanTable">
+			<tr>
+				<td>
+					<a href="/quizWebApp">
+						<img class="left" src="./images/logo.png" />
+					</a>
+				</td>
+				<td align="right" id="td_gebruiker">		
+					
+				</td>
+			</tr>
+		</table>
+		
+		<div id="dial_load" class="dialog" title="Load">
+		</div>
+		
+		<div id="dial_save" class="dialog" title="Save">
+			<p id="p_save">Kies een naam voor het rapport:</p>
+			<input type="text" name="naam" id="txt_naamRap"/>
+			<input type="button" class="btn top10" value="Save" id="btn_save"/>
+		</div>
+		
+		<div id="div_accDenied" title="Toegang geweigerd" class="dialog">
+			<p>Toegang geweigerd: geen beheerder</p>
+		</div>
+		
+	</div>
+	
+		<div class="center">
+			<h1>Beheerder - Rapporten</h1>
+			<p>Sleep deelnames in het rapport veld en groepeer de deelnames volgens vragenreeks of deelnemer. Als het rapport af is, kan je het saven en later weer opvragen.</p>
+		</div>
+	
+		<ul id="menu">
+			<li>Bestand
+				<ul class="menu_sub">
+					<li id="men_save">Save</li>
+					<li id="men_load">Load</li>
+					<li id="men_new">New</li>
+				</ul>
+			</li>
+			<li>Groepering
+				<ul class="menu_sub">
+					<li id="groep_deel">Deelnemer</li>
+					<li id="groep_quiz">Vragenreeks</li>
+				</ul>
+			</li>
+		</ul>		
+		
+		<div id="rapport_wrapper">
+		
+			<div id="wrapper_links">
+			
+				<div id="rapport_deelnemers" class="rapportBeh">
+					<h3 class="leftTitle">Deelnemers</h3>					
+				</div>
+				
+				<div id="rapport_vragenreeksen" class="rapportBeh">
+					<h3 class="leftTitle">Vragenreeksen</h3>
+				</div>
+			
+			</div>
+			
+			<div id="div_rapport" class="rapportBeh">
+				<h1 class="center">Rapport</h1>
+			</div>
+		
+		</div>
+	
+	<div class="main">	
+	
+	</div>
+
+</body>
+</html>
