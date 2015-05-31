@@ -48,6 +48,7 @@
 		<mapping class="model.antwoord.KlassiekAntwoord"/>
 		<mapping class="model.antwoord.MultipleChoiceAntwoord"/>
 		<mapping class="model.antwoord.NumeriekAntwoord"/>
+		<mapping class="model.Rapport"/>
 
 	</session-factory>
 

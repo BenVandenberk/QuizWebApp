@@ -33,6 +33,12 @@ public class IngelogdeSpelContext extends SpelContext {
 	@Override
 	public void save() {
 		dbFacade.saveDeelname(deelname);
-		// dbFacade.saveDeelnemer(deelnemer);
+	}
+
+	@Override
+	public void setGedaan(boolean isGedaan) {
+		super.setGedaan(isGedaan);
+		deelnemer.updateToDo(deelname);
+		dbFacade.saveDeelnemer(deelnemer);
 	}
 }

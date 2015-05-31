@@ -20,7 +20,7 @@ function loadBeheerderFunctionaliteiten() {
 	$("#tab3").append($("<p>").html("Stel to-do-lijsten op voor individuele deelnemers en genereer tailor-made rapporten"));
 	$("#tab3").append($("<br>"));
 	$("#tab3").append($("<a>").html("To-do").addClass("btn").addClass("right5").attr("href", "/quizWebApp/todo.html"));
-	$("#tab3").append($("<a>").html("Rapporten").addClass("btn"));
+	$("#tab3").append($("<a>").html("Rapporten").addClass("btn").attr("href", "/quizWebApp/beheerder_rapporten.html"));
 	
 	$(".btn").button();
 	$("#tabs").tabs("refresh");

@@ -14,6 +14,8 @@ import model.Deelnemer;
 
 import org.json.JSONObject;
 
+import service.JSONService;
+
 @WebServlet("/gebruikerInfo")
 public class GebruikerInfoServlet extends HttpServlet {
 
@@ -32,6 +34,8 @@ public class GebruikerInfoServlet extends HttpServlet {
 
 		if (deelnemer != null) {
 			JSONObject responseJSON = new JSONObject();
+			responseJSON.put("todo", JSONService.maakToDo(deelnemer));
+			responseJSON.put("id", deelnemer.getDeelnemerID());
 			responseJSON.put("gebruikersNaam", deelnemer.getGebruikersNaam());
 			responseJSON.put("isBeheerder", isBeheerder);
 			response.setContentType("text/javascript");

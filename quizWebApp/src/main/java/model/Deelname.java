@@ -78,4 +78,52 @@ public class Deelname {
 		return score;
 	}
 
+	/**
+	 * Geeft true terug als de vragenreeks helemaal is doorlopen en als er een score is gehaald van minstens 50%
+	 *
+	 * @return true als de vragenreeks helemaal is doorlopen en als er een score is gehaald van minstens 50%
+	 */
+	public boolean opgelostEnGeslaagd() {
+		// voor elke reeksvraag in de vragenreeks is er een gegevenantwoord met diezelfde reeksvraag
+		boolean opgelost = true;
+		boolean gevonden = false;
+		for (ReeksVraag rv : vragenReeks.getReeksVragen()) {
+			gevonden = false;
+			for (int i = 0; !gevonden && i < antwoorden.size(); i++) {
+				gevonden = rv.equals(antwoorden.get(i).getReeksVraag());
+			}
+			if (!gevonden) {
+				opgelost = false;
+				break;
+			}
+		}
+		return (opgelost && (this.getScore() >= this.vragenReeks.getAantalVragen() / 2.0));
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + deelnameID;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Deelname other = (Deelname) obj;
+		if (deelnameID != other.deelnameID) {
+			return false;
+		}
+		return true;
+	}
+
 }

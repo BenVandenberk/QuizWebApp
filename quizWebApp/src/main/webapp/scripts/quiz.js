@@ -53,9 +53,11 @@ function antwoordKlik(data, textStatus, jqXHR) {
 		if (data.uitgebreidRapport) {
 			window.location = "/quizWebApp/rapporten.html?id=" + data.deelnameID;
 		} else {
+			document.title = data.titel;
 			toonBeperktRapport(data);
 		}
 	} else {
+		document.title = data.titel;
 		toonVraag(data);
 	}
 }
@@ -69,9 +71,7 @@ function toonVraag(vraag) {
 			toonJaNeeVraag(vraag);
 			break;
 		case "MC" :
-			vraag.uniekAntwoord
-					? toonMultipleChoiceVraag1Mogelijkheid(vraag)
-					: toonMultipleChoiceVraagMeerdereMogelijkheden(vraag);
+			toonMultipleChoiceVraag(vraag);
 			break;
 		case "Numeriek" :
 			vraag.isExactAntwoord
@@ -107,34 +107,18 @@ function toonJaNeeVraag(vraag) {
 	$(".ant").button();
 }
 
-function toonMultipleChoiceVraagMeerdereMogelijkheden(vraag) {
+function toonMultipleChoiceVraag(vraag) {
 	for (var i = 0; i < vraag.keuzes.length; i++) {
-		$("#vraag").append(
-				"<input type='checkbox' name='antwoorden' class='ant' id='" + i
-						+ "' value='" + vraag.keuzes[i] + "'/>");
-		$("#vraag").append(
-				"<label class='mc' for='" + i + "'>" + vraag.keuzes[i]
-						+ "</label>");
-		$("#vraag").append("<br />");
-	}
-	$(".ant").button();
-}
-
-function toonMultipleChoiceVraag1Mogelijkheid(vraag) {
-	for (var i = 0; i < vraag.keuzes.length; i++) {
-		$("#vraag").append(
-				"<input type='radio' name='antwoorden' class='ant' id='" + i
-						+ "' value='" + vraag.keuzes[i] + "'/>");
-		$("#vraag").append(
-				"<label class='mc' for='" + i + "'>" + vraag.keuzes[i]
-						+ "</label>");
-		$("#vraag").append("<br />");
+		var type = vraag.uniekAntwoord ? "radio" : "checkbox";		
+		$("#vraag").append($("<input>").attr("type", type).attr("name", "antwoorden").attr("value", escape(vraag.keuzes[i])).attr("id", i).addClass("ant"));
+		$("#vraag").append($("<label>").attr("for", i).html(vraag.keuzes[i]).addClass("mc"));
+		$("#vraag").append($("<br>"));
 	}
 	$(".ant").button();
 }
 
 function toonDnDVraag(vraag) {
-	var table = $("<table>").addClass("teSlepen");
+	var table = $("<table>").addClass("teSlepen").addClass("fixed");
 	for (var i = 0; i < vraag.teSlepen.length; i++) {		
 		var td = $("<td>").append($("<img>").attr("src", vraag.imagePaths[vraag.teSlepen[i]]).attr("data-id", vraag.teSlepen[i]).addClass("teSlep").addClass("out"));
 		var row = $("<tr>").html(td);
@@ -142,7 +126,7 @@ function toonDnDVraag(vraag) {
 	}
 	$("#vraag").append(table);
 	
-	table = $("<table>").addClass("antwoordVelden");
+	table = $("<table>").addClass("antwoordVelden").addClass("fixed");
 	for (var i = 0; i < vraag.antwoordVelden.length; i++) {
 		var td = $("<td>").append($("<img>").attr("src", vraag.imagePaths[vraag.antwoordVelden[i]]).attr("data-id", vraag.antwoordVelden[i]).addClass("ant").addClass("out"));
 		var row = $("<tr>").html(td);
@@ -169,6 +153,8 @@ function toonDnDVraag(vraag) {
 }
 
 function toonExacteNumeriekeVraag(vraag) {
+	numMetInterval = false;
+	
 	$("#vraag").append("<input type='text' class='ant' name='num_ant'/>");
 	$(".ant").wrap("<form id='frm_num'></form>");
 	$("#vraag").append("<div id='error' class='top10'></div>");
@@ -240,12 +226,14 @@ function isValidAntwoord() {
 }
 
 function toonBeperktRapport(data) {
+	var vragenReeks = data.vragenReeks;
+	
 	$(".main").empty();
 	$(".main").append($("<h1>").text("Rapport"));
-	$(".main").append($("<h2>").text("-- " + data.naam + " --"));
-	$(".main").append($("<h3>").text("Je behaalde een score van: " + data.score + "/" + data.aantalVragen));
-	$(".main").append($("<div>").addClass("rapport").attr("id", "div_rapport"));
-	$("#div_rapport").append($("<table style='width:100%'>").attr("id", "tab_rapport").addClass("left"));
+	$(".main").append($("<h2>").text("-- " + vragenReeks.naam + " --"));
+	$(".main").append($("<h3>").text("Je behaalde een score van: " + data.score + "/" + vragenReeks.aantalVragen));
+	$(".main").append($("<div>").addClass("rapport").attr("id", "div_beperkt_rapport"));
+	$("#div_beperkt_rapport").append($("<table style='width:100%'>").attr("id", "tab_rapport").addClass("left"));
 	
 	$("#tab_rapport").append($("<tr>").append(
 			$("<th>").addClass("center").text("Vraag")).append(
@@ -253,11 +241,11 @@ function toonBeperktRapport(data) {
 							$("<th>").addClass("center").text("Verbetering")));
 	
 	var imgSrc;
-	for (var i = 0; i < data.aantalVragen; i++) {
+	for (var i = 0; i < vragenReeks.aantalVragen; i++) {
 		imgSrc = data.verbetering[i] ? "images/JuistGB.png" : "images/FoutGB.png";
 		$("#tab_rapport").append($("<tr>").append(
-				$("<td style='width:70%'>").html(data.vragen[i].vraag).addClass("rapport")).append(
-						$("<td>").addClass("center").html(data.vragen[i].juisteAntwoord).addClass("rapport")).append(
+				$("<td style='width:70%'>").html(vragenReeks.vragen[i].vraag).addClass("rapport")).append(
+						$("<td>").addClass("center").html(vragenReeks.vragen[i].juisteAntwoord).addClass("rapport")).append(
 								$("<td>").addClass("center").html($("<img>").addClass("rapport").attr("src", imgSrc).addClass("verbetering"))));
 	}
 	

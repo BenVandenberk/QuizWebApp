@@ -16,6 +16,7 @@ import model.antwoord.Antwoord;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import service.JSONService;
 import service.QuizService;
 import context.IngelogdeSpelContext;
 import context.SpelContext;
@@ -73,6 +74,7 @@ public class VolgendeVraagServlet extends HttpServlet {
 			responseJSON.put("huidigeVraagIndex", spelContext.getVolgnummerHuidigeVraag());
 			responseJSON.put("verbetering", new JSONArray(spelContext.getAntwoorden()));
 			responseJSON.put("afgelopen", false);
+			responseJSON.put("titel", spelContext.getVragenReeks().getNaam());
 		} else {
 			spelContext.setGedaan(true);
 			if (spelContext instanceof IngelogdeSpelContext) {
@@ -81,11 +83,13 @@ public class VolgendeVraagServlet extends HttpServlet {
 				responseJSON.put("uitgebreidRapport", true);
 				responseJSON.put("deelnameID", ((IngelogdeSpelContext) spelContext).getDeelname().getDeelnameID());
 			} else {
-				responseJSON = new JSONObject(spelContext.getVragenReeks());
+				responseJSON = new JSONObject();
+				responseJSON.put("vragenReeks", JSONService.maakVragenReeksBeperktRapport(spelContext.getVragenReeks()));
 				responseJSON.put("verbetering", new JSONArray(spelContext.getAntwoorden()));
 				responseJSON.put("score", spelContext.getScore());
 				responseJSON.put("afgelopen", true);
 				responseJSON.put("uitgebreidRapport", false);
+				responseJSON.put("titel", "Rapport - " + spelContext.getVragenReeks().getNaam());
 			}
 		}
 

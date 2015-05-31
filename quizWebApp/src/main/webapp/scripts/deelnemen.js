@@ -19,11 +19,18 @@ function toonVragenReeksen(data, textStatus, jqXHR) {
 		$("#accordion_thema").append($("<div>").addClass("vragen").append($("<ul>").addClass(themas[i].omschrijving).addClass("vragen")));		
 		
 		for (var j = 0; j < vragenReeksen.length; j++) {
-			if (themas[i].omschrijving === vragenReeksen[j].thema.omschrijving) {
-				$("ul." + themas[i].omschrijving).append($("<li>").addClass("vraag").attr("id", vragenReeksen[j].vragenReeksId).html(vragenReeksen[j].naam)); 
+			if (themas[i].omschrijving === vragenReeksen[j].thema) {
+				$("ul." + themas[i].omschrijving)
+				.append($("<li>").addClass("vraag").attr("id", vragenReeksen[j].id).html(vragenReeksen[j].naam).data("isEnabled", vragenReeksen[j].isEnabled));
 			}
 		}			
 	}
+	
+	$("li.vraag").each(function() {
+		if (!$(this).data("isEnabled")) {
+			$(this).addClass("disabled");
+		}
+	});
 	
 	$("#accordion_thema").accordion({
 		collapsible : true,
@@ -33,17 +40,19 @@ function toonVragenReeksen(data, textStatus, jqXHR) {
 	$("div .vragen").removeClass("ui-widget-content");
 	
 	$("li.vraag").click(function(e) {
-		$.ajax({
-			method : "GET",
-			data : "vragenReeksId=" + $(this).attr("id"),
-			url : "startVragenReeks",
-			success : function(data, textStatus, jqXHR) {
-				window.location = "quiz.html";
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert(textStatus);
-			}
-		});
+		if ($(this).data("isEnabled")) {
+			$.ajax({
+				method : "GET",
+				data : "vragenReeksId=" + $(this).attr("id"),
+				url : "startVragenReeks",
+				success : function(data, textStatus, jqXHR) {
+					window.location = "quiz.html";
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert(textStatus);
+				}
+			});
+		}
 	});		
 }
 

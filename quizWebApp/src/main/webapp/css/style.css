@@ -2,6 +2,15 @@
 
 body {	
 	background-color: #D8F2F0;
+	font-family: Gill Sans,Arial,sans-serif;
+}
+
+p, label {
+	font-size: 1.3em;
+}
+
+table {
+	font-size: 1.2em;
 }
 
 .right {
@@ -24,8 +33,13 @@ body {
 	width: 100%;	
 }
 
-.error {	
-	font-weight: bold;
+ul.error {		
+	margin : 10px 0px 0px 0px;
+	text-align : left;
+}
+
+.error {
+	font-weight : bold;
 }
 
 .head {
@@ -41,6 +55,7 @@ body {
 
 .dialog {
 	display: none;
+	text-align : center;	
 }
 
 .main {
@@ -48,13 +63,30 @@ body {
 	clear: both;
 }
 
-ul.vragen {
-	list-style-image: url('images/vraagtekenResized.png');
+ul.vragen {	
 	font-size: 25px;
+	list-style : none;		
 }
 
 li.vraag {
 	cursor : pointer;	
+	background: url('images/vraagtekenOK.png') no-repeat left center;
+	margin : 0;
+	padding : 0px 0px 0px 35px;
+	text-align : left;
+}
+
+li.vraag.disabled {
+	color : gray;
+	cursor : auto;
+	background: url('images/vraagtekenGrijs.png') no-repeat left center;
+	margin : 0;
+	padding : 0px 0px 0px 35px;
+	text-align : left;
+}
+
+li.vraag.disabled:hover {
+	border-style : none;	
 }
 
 li.vraag:hover {
@@ -164,8 +196,9 @@ div.vragen {
 }
 
 div.todo {
-	border-style : dashed;
-	border-width : 2px;
+	border-style : inset;
+	border-width : 4px;
+	border-color : #1010B0;
 	height : 600px;	
 }
 
@@ -194,4 +227,168 @@ table.todoTabel {
 div.todo {
 	background-color : #ECF7E6;
 	overflow-y : scroll;
+}
+
+#lbl_todo {
+	cursor : pointer;
+	border-style : outset;
+	border-width : 1px;
+	padding : 5px;
+	font-weight : bold;
+	margin : 0px 10px 0px 0px;
+}
+
+.ui-menu:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.ui-menu .ui-menu-item {
+    display: inline-block;
+    float: left;
+    margin: 10px;
+    padding: 0;
+    width: 175px;
+}
+
+div.rapportBeh {
+	border-style : inset;
+	border-width : 4px;
+	border-color : #1010B0;
+	background-color : #ECF7E6;
+}
+
+#rapport_deelnemers {
+	height : 50%;	
+	margin-bottom : 10px;	
+	overflow-y : scroll;
+	overflow-x : scroll;
+	margin-top : 0px;	
+	padding : 13px 0px 0px 0px;
+}
+
+#rapport_vragenreeksen {
+	height : 50%;
+	overflow-y : scroll;
+	overflow-x : scroll;
+}
+
+#div_rapport {
+	display : table-cell;
+	height : 800px;
+	height : 100%;	
+	overflow-y : scroll;	
+}
+
+#div_rapport:not(h1):not(h2) {
+	font-size : 1.2em;
+}
+
+#wrapper_links {
+	display : table-cell;
+	width : 600px;
+	height : 1000px;
+	
+}
+
+#rapport_wrapper {
+	width: 100%;
+	display: table;
+	border-spacing : 10px;
+	font-family: Gill Sans,Arial,sans-serif;	
+}
+
+.leftTitle {
+	text-align : center;	
+}
+
+.rapDraggable {
+	cursor : pointer;
+	color: #2c4359;
+}
+
+li.rapDraggable {
+	padding : 5px 10px 0px 0px;
+	margin-bottom : 5px;
+}
+
+ul.rapUl {
+	list-style-type : none;
+	margin-bottom : 10px;	
+	margin-right : 50px;
+}
+
+.rapHover {
+	border:1px solid #999;
+	background:#ccd232 url("images/ui-bg_diagonals-small_75_ccd232_40x40.png") 50% 50% repeat;
+	color : black;
+}
+
+.rapHoverBold {
+	border:1px solid #999;
+	background:#ccd232 url("images/ui-bg_diagonals-small_75_ccd232_40x40.png") 50% 50% repeat;
+	color : black;
+	font-weight : bold;
+}
+
+.big {
+	font-size : 200%;
+}
+
+.tab_deeln {	
+	margin : 15px auto;
+	width : 85%;
+}
+
+.tab_details {
+	margin : 15px auto;
+	width : 85%;
+	border-style : solid;
+	border-width : 2px;
+	border-color : black;
+}
+
+.verwijderKnop {
+	font-size : 200%;
+	text-align : center;
+	border:1px solid #999;	
+	color : black;
+	font-weight : bold;	
+}
+
+.verwijderKnopOut {
+	background:#ccd232 url("images/ui-bg_diagonals-small_50_93c3cd_40x40.png") 50% 50% repeat;
+}
+
+
+.verwijderKnopHover {
+	background:#ccd232 url("images/ui-bg_diagonals-small_40_db4865_40x40.png") 50% 50% repeat;
+}
+
+ul.load {
+	list-style-type : none;
+	text-align : left;
+}
+
+li.load {
+	margin : 10px 0px 0px 0px;
+}
+
+li.load:hover {
+	border:1px solid #999;
+	background:#ccd232 url("images/ui-bg_diagonals-small_75_ccd232_40x40.png") 50% 50% repeat;
+	color : black;
+	cursor : pointer;
+}
+
+#num_slider {
+	background : white !important;
+}
+
+#menu {
+	background : url("images/ui-bg_diagonals-small_50_93c3cd_40x40.png") repeat-x scroll 50% 50% #ecf7e6 !important;
 }

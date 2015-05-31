@@ -32,7 +32,12 @@ function toonAllesBijStart(data, textStatus, jqXHR) {
 				deelnemerID = $(this).data("id")
 				requestToDoLijstje(deelnemerID);
 			});
-		}
+		},
+		  selecting: function(event, ui){
+	            if( $(".ui-selected, .ui-selecting").length > 1){
+	                  $(ui.selecting).removeClass("ui-selecting");
+	            }
+	      }
 	});
 	
 	$(".selectable").hover(

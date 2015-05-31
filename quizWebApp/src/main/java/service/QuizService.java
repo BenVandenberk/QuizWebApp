@@ -2,9 +2,11 @@ package service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import model.Deelnemer;
 import model.VragenReeks;
 import model.antwoord.Antwoord;
 import model.antwoord.DragAndDropAntwoord;
@@ -51,6 +53,32 @@ public class QuizService {
 			return new DragAndDropAntwoord(antwoordMap);
 		}
 		return null;
+	}
+
+	public static Map<VragenReeks, Boolean> getVragenReeksenIsEnabled(List<VragenReeks> vragenReeksen, Deelnemer deelnemer) {
+		Map<VragenReeks, Boolean> resultMap = new HashMap<VragenReeks, Boolean>();
+
+		if (deelnemer != null) {
+			boolean dependencyOK = true;
+			List<VragenReeks> voorgaande;
+			for (VragenReeks vr : vragenReeksen) {
+				dependencyOK = true;
+				voorgaande = vr.getVoorgaandeVragenReeksen();
+				for (int i = 0; dependencyOK && i < voorgaande.size(); i++) {
+					dependencyOK = deelnemer.heeftOpgelost(voorgaande.get(i));
+				}
+				resultMap.put(vr, dependencyOK);
+			}
+		} else {
+			for (VragenReeks vr : vragenReeksen) {
+				if (vr.getVoorgaandeVragenReeksen().size() > 0) {
+					resultMap.put(vr, false);
+				} else {
+					resultMap.put(vr, true);
+				}
+			}
+		}
+		return resultMap;
 	}
 
 	public JSONObject getJSONVraag(Vraag vraag) {

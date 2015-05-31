@@ -5,16 +5,17 @@ import java.util.List;
 import model.Deelname;
 import model.Deelnemer;
 import model.Gebruiker;
+import model.Rapport;
 import model.VragenReeks;
 import service.Authentication;
 
 public class DBFacade {
 
 	private static DBFacade uniekeInstantie;
-	private HibernateToDB hibernateToDB;
+	private IDBCore dbCore;
 
 	private DBFacade() {
-		hibernateToDB = HibernateToDB.getUniekeInstantie();
+		dbCore = HibernateToDB.getUniekeInstantie();
 	}
 
 	public static DBFacade getUniekeInstantie() {
@@ -25,12 +26,12 @@ public class DBFacade {
 	}
 
 	public boolean userBestaat(String userName) {
-		Gebruiker gebruiker = hibernateToDB.getGebruiker(userName);
+		Gebruiker gebruiker = dbCore.getGebruiker(userName);
 		return gebruiker != null;
 	}
 
 	public Gebruiker login(String gebruikersNaam, String paswoord) throws IllegalArgumentException {
-		Gebruiker gebruiker = hibernateToDB.getGebruiker(gebruikersNaam);
+		Gebruiker gebruiker = dbCore.getGebruiker(gebruikersNaam);
 		if (gebruiker == null) {
 			throw new IllegalArgumentException("Gebruiker bestaat niet");
 		}
@@ -43,36 +44,52 @@ public class DBFacade {
 	}
 
 	public void saveDeelnemer(Deelnemer deelnemer) {
-		hibernateToDB.saveDeelnemer(deelnemer);
+		dbCore.saveDeelnemer(deelnemer);
 	}
 
 	public void saveDeelname(Deelname deelname) {
-		hibernateToDB.saveDeelname(deelname);
+		dbCore.saveDeelname(deelname);
 	}
 
 	public void saveVragenReeks(VragenReeks vragenReeks) {
-		hibernateToDB.saveVragen(vragenReeks.getVragen());
-		hibernateToDB.saveVragenReeks(vragenReeks);
+		dbCore.saveVragen(vragenReeks.getVragen());
+		dbCore.saveVragenReeks(vragenReeks);
 	}
 
 	public void saveGebruiker(Gebruiker gebruiker) {
-		hibernateToDB.saveGebruiker(gebruiker);
+		dbCore.saveGebruiker(gebruiker);
+	}
+
+	public void saveRapport(Rapport rapport) {
+		dbCore.saveRapport(rapport);
+	}
+
+	public List<Rapport> getRapporten() {
+		return dbCore.getRapporten();
 	}
 
 	public List<VragenReeks> getVragenReeksen() {
-		return hibernateToDB.getVragenReeksen();
+		return dbCore.getVragenReeksen();
 	}
 
 	public List<Deelnemer> getDeelnemers() {
-		return hibernateToDB.getDeelnemers();
+		return dbCore.getDeelnemers();
+	}
+
+	public List<Deelname> getDeelnames() {
+		return dbCore.getDeelnames();
 	}
 
 	public VragenReeks getVragenReeks(int id) {
-		return hibernateToDB.getVragenReeks(id);
+		return dbCore.getVragenReeks(id);
 	}
 
 	public Deelname getDeelname(int id) {
-		return hibernateToDB.getDeelname(id);
+		return dbCore.getDeelname(id);
+	}
+
+	public Rapport getRapport(int id) {
+		return dbCore.getRapport(id);
 	}
 
 }

@@ -62,7 +62,7 @@ public class VragenReeks {
 	}
 
 	public List<VragenReeks> getVoorgaandeVragenReeksen() {
-		return new ArrayList<VragenReeks>(voorgaandeVragenReeksen);
+		return voorgaandeVragenReeksen;
 	}
 
 	public void addVoorgaandeVragenReeks(VragenReeks voorgaandeVragenReeks) {
@@ -90,6 +90,10 @@ public class VragenReeks {
 			result.add(rv.getVraag());
 		}
 		return result;
+	}
+
+	public List<ReeksVraag> getReeksVragen() {
+		return new ArrayList<ReeksVraag>(this.vragen);
 	}
 
 	public int getAantalVragen() {

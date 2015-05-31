@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Gebruiker gebruiker = GebruikerService.login(gebruikersNaam, paswoord);
 			Deelnemer deelnemer = gebruiker.getDeelnemer();
+			deelnemer.setBeheerder(gebruiker.isBeheerder());
 			HttpSession session = request.getSession();
 			session.setAttribute("deelnemer", deelnemer);
 			session.setAttribute("isBeheerder", gebruiker.isBeheerder());

@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="./css/jquery-ui.css" type="text/css" />
 <script src="./scripts/jquery.js" type="text/javascript"></script>
 <script src="./scripts/jquery-ui.js" type="text/javascript"></script>
+<script src="./scripts/jquery-validate.js" type="text/javascript"></script>
+<script src="./scripts/additional-methods.js" type="text/javascript"></script>
 <script src="./scripts/util.js" type="text/javascript"></script>
 <script src="./scripts/deelnemen.js" type="text/javascript"></script>
 <title>Deelnemen</title>
@@ -58,25 +60,43 @@
 			<table>
 				<tr>
 					<td>Gebruikersnaam:</td>
-					<td><input type="text" name="gebruikersNaam"/></td>
+					<td><input type="text" name="gebruikersNaam" id="gebruikersNaam"/></td>
 				</tr>
 				<tr>
 					<td>Paswoord:</td>
-					<td><input type="password" name="paswoord"/></td>
+					<td><input type="password" name="paswoord" id="paswoord"/></td>
+				</tr>
+				<tr>
+					<td>Herhaal paswoord:</td>
+					<td><input type="password" name="paswoord2" id="paswoord2"/></td>
+				</tr>
+				<tr>
+					<td>Geboortedatum:</td>
+					<td><input type="text" name="geboortedatum" id="inp_dob"/></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td class="right"><input type="button" class="btn" value="Registreer" id="btn_registreer_enter"/></td>
 				</tr>
-			</table>
+			</table>			
 		</form>
-	</div>	
+		<ul id="ul_error" class="error">
+		</ul>
+	</div>
+	
+	<div id="dial_todo" title="To Do" class="dialog">
+		
+	</div>
 
 </div>
 
 <div class="main">
 
 	<h1>Thema's</h1>
+	
+	<p>Bekijk vragenreeksen per thema en neem deel.</p>
+	<p>Enkele vragenreeksen worden pas beschikbaar nadat je als geregistreerde gebruiker voor een of meerdere anderen een score behaalde van minstens 50%.</p>
+	<br />
 	
 	<div id="accordion_thema">	
 	</div>

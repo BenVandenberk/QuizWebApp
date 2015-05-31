@@ -59,4 +59,30 @@ public class GegevenAntwoord {
 		return antwoord;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + gegevenAntwoordID;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		GegevenAntwoord other = (GegevenAntwoord) obj;
+		if (gegevenAntwoordID != other.gegevenAntwoordID) {
+			return false;
+		}
+		return true;
+	}
+
 }

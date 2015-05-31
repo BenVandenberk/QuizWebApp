@@ -5,8 +5,11 @@
 <link rel="stylesheet" href="./css/jquery-ui.css" type="text/css" />
 <script src="./scripts/jquery.js" type="text/javascript"></script>
 <script src="./scripts/jquery-ui.js" type="text/javascript"></script>
+<script src="./scripts/jquery-validate.js" type="text/javascript"></script>
+<script src="./scripts/additional-methods.js" type="text/javascript"></script>
 <script src="./scripts/util.js" type="text/javascript"></script>
 <script src="./scripts/home.js" type="text/javascript"></script>
+<title>QWA</title>
 </head>
 <body>
 
@@ -56,19 +59,33 @@
 			<table>
 				<tr>
 					<td>Gebruikersnaam:</td>
-					<td><input type="text" name="gebruikersNaam"/></td>
+					<td><input type="text" name="gebruikersNaam" id="gebruikersNaam"/></td>
 				</tr>
 				<tr>
 					<td>Paswoord:</td>
-					<td><input type="password" name="paswoord"/></td>
+					<td><input type="password" name="paswoord" id="paswoord"/></td>
+				</tr>
+				<tr>
+					<td>Herhaal paswoord:</td>
+					<td><input type="password" name="paswoord2" id="paswoord2"/></td>
+				</tr>
+				<tr>
+					<td>Geboortedatum:</td>
+					<td><input type="text" name="geboortedatum" id="inp_dob"/></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td class="right"><input type="button" class="btn" value="Registreer" id="btn_registreer_enter"/></td>
 				</tr>
-			</table>
+			</table>			
 		</form>
+		<ul id="ul_error" class="error">
+		</ul>
 	</div>	
+	
+	<div id="dial_todo" title="To Do" class="dialog">
+		
+	</div>
 
 </div>
 
@@ -91,7 +108,7 @@
 			<h1 class="center">Info</h1>
 			<p>Als anonieme gebruiker kan je vragenreeksen oplossen. Na elke reeks krijg je een overzicht met je score en de juiste antwoorden. Om van de volledige functionaliteit van QWA gebruik te maken registreer je je eerst.</p>
 			<p>Als geregistreerde gebruiker wordt elk antwoord dat je geeft opgeslagen. Later kan je van iedere vorige deelname een overzicht opvragen. Bepaalde vragenreeksen kan je pas oplossen als je een voorgaande vragenreeks hebt opgelost. Log je dus in om je progress te bewaren! </p>
-			<p>Inloggen met een beheerdersaccount laat je toe om to-do lijsten op te stellen voor bepaalde deelnemers. Als beheerder heb je ook toegang tot de volledige rapportagefuncties.</p>
+			<p>Inloggen met een beheerdersaccount laat je toe om to-do lijsten op te stellen voor bepaalde deelnemers. Deelnemers werken hun to-do lijstje af door de vragenreeksen erop volledig te doorlopen en een score te halen van minstens 50%. Als beheerder heb je ook toegang tot de volledige rapportagefuncties.</p>
 			<p>Veel quizplezier!</p>
 		</div>
 	</div>

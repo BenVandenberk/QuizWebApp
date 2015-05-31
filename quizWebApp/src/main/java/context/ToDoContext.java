@@ -2,6 +2,7 @@ package context;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.Deelnemer;
 import model.VragenReeks;
@@ -14,7 +15,7 @@ public class ToDoContext {
 	private DBFacade dbFacade;
 
 	public ToDoContext(List<Deelnemer> deelnemers, List<VragenReeks> vragenReeksen) {
-		this.deelnemers = new ArrayList<Deelnemer>(deelnemers);
+		this.deelnemers = deelnemers.stream().filter(d -> !d.isBeheerder()).collect(Collectors.toList());
 		this.vragenReeksen = new ArrayList<VragenReeks>(vragenReeksen);
 		dbFacade = DBFacade.getUniekeInstantie();
 	}
